@@ -1,30 +1,27 @@
 package com.example.qltv.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
-
 @Entity
 @Table(name = "thanhvien")
 public class Member {
     @Id
-    @Column(name="MaTV")
+    @Column(name = "MaTV")
     private int maTV;
-    @Column(name="HoTen")
+    @Column(name = "HoTen")
     private String tenTV;
-    @Column(name="Khoa")
+    @Column(name = "Khoa")
     private String khoa;
-    @Column(name="Nganh")
+    @Column(name = "Nganh")
     private String nganh;
-    @Column(name="SDT")
+    @Column(name = "SDT")
     private String sdt;
-    @Column(name="Password")
+    @Column(name = "Password")
     private String password;
-    @Column(name="Email")
+    @Column(name = "Email")
     private String email;
 
     public int getMaTV() {
@@ -82,5 +79,5 @@ public class Member {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 }

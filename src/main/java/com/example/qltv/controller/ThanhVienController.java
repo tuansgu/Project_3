@@ -7,10 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 @Controller
-public class MemberController {
+public class ThanhVienController {
     private MemberService memberService;
 
-    public MemberController(MemberService memberService) {
+    public ThanhVienController(MemberService memberService) {
         this.memberService = memberService;
     }
 
@@ -19,6 +19,6 @@ public class MemberController {
     @GetMapping("/")
     public String listMember(Model model) {
         model.addAttribute("members", memberService.getAllMember());
-        return "login";         
+        return "sidenav";         
     }
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUảN Lý THành VIêN</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100; /* Sidebar has higher z-index to overlap content */
+            padding: 48px 0; /* Adjust according to your needs */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds shadow */
+        }
+
+        /* Sidebar links */
+        .sidebar .nav-link {
+            padding: 10px 20px;
+        }
+
+        /* Content area */
+        .content-area {
+            margin-left: 250px; /* Adjust according to the width of your sidebar */
+            padding: 20px;
+        }
+
+        /* Submenu style */
+        .submenu {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            max-height: 200px; /* Adjust according to your needs */
+        }
+
+        .submenu a {
+            padding: 5px 0;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar bg-light">
+        <div class="container-fluid">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="toggleSubmenu(event, 'thongtincanhan_submenu')">Thông tin thành viên</a>
+                    <ul class="submenu" id="thongtincanhan_submenu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/doimatkhau" data-target="doimatkhau">Đổi mật khẩu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/xemvipham" data-target="xemvipham">Xem trạng thái vi phạm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/xemdatcho" data-target="xemdatcho">Xem đặt chỗ thiết bị</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/xemthietbi" data-target="xemthietbi">Xem thiết bị đang mượn</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/datcho" data-target="datcho">Đặt chỗ mượn thiết bị</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content area -->
+    <div class="content-area" id="content">
+        <h2>Hồ sơ thành viên</h2>
+        <p>Thông tin cá nhân của bạn sẽ được hiển thị ở đây.</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
