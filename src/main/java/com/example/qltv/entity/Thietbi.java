@@ -15,7 +15,9 @@ public class Thietbi {
     private String tenTB;
     @Column(name = "MoTaTB")
     private String mota;
-
+    public Thietbi() {
+        
+    }
     public Thietbi(int maTB, String tenTB, String mota) {
         this.maTB = maTB;
         this.tenTB = tenTB;
