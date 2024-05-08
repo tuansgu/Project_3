@@ -10,74 +10,92 @@ import jakarta.persistence.Table;
 public class Member {
     @Id
     @Column(name = "MaTV")
-    private int maTV;
-    @Column(name = "HoTen")
-    private String tenTV;
+    private int MaTV;
+
+    @Column(name = "Hoten")
+    private String HoTen;
+
     @Column(name = "Khoa")
-    private String khoa;
+    private String Khoa;
+
     @Column(name = "Nganh")
-    private String nganh;
+    private String Nganh;
+
     @Column(name = "SDT")
-    private String sdt;
-    @Column(name = "Password")
-    private String password;
+    private String SDT;
+
     @Column(name = "Email")
-    private String email;
+    private String Email;
+
+    @Column(name = "Password")
+    private String Password;
+
+    public Member(int maTV, String hoTen, String khoa, String nganh, String sDT, String email, String password) {
+        MaTV = maTV;
+        HoTen = hoTen;
+        Khoa = khoa;
+        Nganh = nganh;
+        SDT = sDT;
+        Email = email;
+        Password = password;
+    }
+
+    public Member() {
+    }
 
     public int getMaTV() {
-        return maTV;
+        return this.MaTV;
     }
 
     public void setMaTV(int maTV) {
-        this.maTV = maTV;
+        this.MaTV = maTV;
     }
 
-    public String getTenTV() {
-        return tenTV;
+    public String getHoTen() {
+        return this.HoTen;
     }
 
-    public void setTenTV(String tenTV) {
-        this.tenTV = tenTV;
+    public void setHoTen(String hoTen) {
+        this.HoTen = hoTen;
     }
 
     public String getKhoa() {
-        return khoa;
+        return this.Khoa;
     }
 
     public void setKhoa(String khoa) {
-        this.khoa = khoa;
+        this.Khoa = khoa;
     }
 
     public String getNganh() {
-        return nganh;
+        return this.Nganh;
     }
 
     public void setNganh(String nganh) {
-        this.nganh = nganh;
+        this.Nganh = nganh;
     }
 
-    public String getSdt() {
-        return sdt;
+    public String getSDT() {
+        return this.SDT;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSDT(String sDT) {
+        this.SDT = sDT;
     }
 
     public String getEmail() {
-        return email;
+        return this.Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
+    public String getPassword() {
+        return this.Password;
+    }
+
+    public void setPassword(String password) {
+        this.Password = password;
+    }
 }
