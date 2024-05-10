@@ -30,13 +30,16 @@ public class Member {
     @Column(name = "Password")
     private String Password;
 
-    public Member(int maTV, String hoTen, String khoa, String nganh, String sDT, String email, String password) {
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    public Member(int maTV, String hoTen, String khoa, String nganh, String sDT, String Email, String password) {
         MaTV = maTV;
         HoTen = hoTen;
         Khoa = khoa;
         Nganh = nganh;
         SDT = sDT;
-        Email = email;
+        Email = Email;
         Password = password;
     }
 
@@ -87,8 +90,8 @@ public class Member {
         return this.Email;
     }
 
-    public void setEmail(String email) {
-        this.Email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public String getPassword() {
@@ -97,5 +100,13 @@ public class Member {
 
     public void setPassword(String password) {
         this.Password = password;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
     }
 }
