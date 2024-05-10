@@ -1,31 +1,32 @@
 package com.example.qltv.service;
 
-import com.example.qltv.DTO.LoginDTO;
+import com.example.qltv.DTO.MemberDTO;
 import com.example.qltv.entity.Member;
-import com.example.qltv.response.LoginMesage;
+import com.example.qltv.service.Impl.MemberNotFoundException;
 
-import java.util.List;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public interface MemberService {
-    // public List<Member> getAllMember();
 
-    // public Member login(int mssv, String password);
+    public Optional<Member> login(int maTV, String password);
 
-    // public boolean logout(String email);
+    public Member addMember(MemberDTO memberDTO);
 
-    public Member addMember(Member member);
+    public void sendEmail(String email, String resetPasswordLink)
+            throws UnsupportedEncodingException, MessagingException;
 
-    // public boolean updatePassword(String email, String password);
+    public void updateResetPasswordToken(String token, String email) throws MemberNotFoundException;
 
-    // public boolean isEmailExist(String email);
+    public Member get(String resetPasswordToken);
 
-    // public boolean isIdExist(int id);
+    public void updatePassword(Member member, String newPassword);
 
-    // public Optional<Member> findByEmal(String email);
-
-    // LoginMesage loginMember(LoginDTO loginDTO);
+    public String getSiteURL(HttpServletRequest request);
 }
