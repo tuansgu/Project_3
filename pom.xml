@@ -30,10 +30,30 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-			<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-mail</artifactId>
+	<version>3.2.1</version>
+</dependency>
+
+		<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-webmvc</artifactId>
+	<version>6.0.13</version>
+</dependency>
+
+		<dependency>
+	<groupId>net.bytebuddy</groupId>
+	<artifactId>byte-buddy</artifactId>
+	<version>1.14.12</version>
+</dependency>
+
+		<dependency>
+	<groupId>com.sun.mail</groupId>
+	<artifactId>javax.mail</artifactId>
+	<version>1.6.2</version>
+</dependency>
+
 
 		<dependency>
 			<groupId>org.assertj</groupId>
@@ -58,6 +78,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+    <version>3.2.1</version>
+</dependency>
+		
 	</dependencies>
 
 	<build>
