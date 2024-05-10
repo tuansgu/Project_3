@@ -15,5 +15,9 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
   @Query("SELECT m FROM Member m WHERE m.MaTV = :MaTV AND m.Password = :Password")
   Optional<Member> findOneByIdAndPassword(int MaTV, String Password);
 
-  // Member findById(int MaTV);
+  @Query("SELECT m FROM Member m WHERE m.Email = :Email")
+  Member findByEmail(String Email);
+
+  public Member findByResetPasswordToken(String token);
+
 }
