@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +28,7 @@
     ></script>
   </head>
   <body>
+
     <div class="container">
       <div class="d-flex justify-content-between p-4 align-items-center">
         <div class="">
@@ -59,11 +61,13 @@
           </a>
 
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
-
+            <li><a class="dropdown-item" th:if="${member != null}" th:href="@{'/hosothanhvien?maTV=' + ${member.maTV}}">Hồ sơ thành viên</a></li>
+            <li><a class="dropdown-item" th:if="${member == null}" th:href="@{/login}">Đăng nhập</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
           </ul>
+          <span class="me-2" th:if="${member != null}" th:text="${member.HoTen}"></span>
+
         </div>
       </div>
 

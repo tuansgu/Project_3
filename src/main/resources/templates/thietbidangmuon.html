@@ -41,14 +41,6 @@
                 padding: 20px 0;
                 text-align: center;
             }
-            button.close {
-                border: none; /* Loại bỏ viền */
-                background-color: transparent; /* Đặt màu nền trong suốt */
-                padding: 0; /* Loại bỏ padding */
-                margin: 0; /* Loại bỏ margin */
-                font-size: inherit; /* Sử dụng kích thước phông chữ thừa hưởng từ phần tử cha */
-                line-height: inherit; /* Sử dụng chiều cao dòng thừa hưởng từ phần tử cha */
-            }
             .text-title {
                 color: white;
             }
@@ -96,41 +88,38 @@
             
         </div>
         <div class="main-panel">
-            <!-- Form Đổi Mật Khẩu -->
-        <div class="container mk ">
-            <h2 class="text-center mb-4">Đổi Mật Khẩu</h2>
-
-            <form class="text-center" action="/processResetPassword" method="POST">
-                <!-- Trường ẩn để chứa mã thành viên -->
-                <input type="hidden" id="maTV" name="maTV" th:value="${member.maTV}">
-
-                <div class="form-group mb-3">
-                    <label for="currentPassword">Mật khẩu hiện tại:</label>
-                    <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+            <div class="content-wrapper">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="bg-white p-4 table-container">
+                                <h2 class="text-center mb-4">Thiết bị đang mượn</h2>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Mã thiết bị</th>
+                                            <th scope="col">Tên thiết bị</th>
+                                            <th scope="col">Mô tả thiết bị</th>
+                                            <th scope="col">Thời gian mượn</th>
+                                            <th scope="col">Thời gian trả</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="thongTin : ${thongTinList}">
+                                            <td th:if="${thongTin.thietBi != null}" th:text="${thongTin.thietBi.maTB}"></td>
+                                            <td th:if="${thongTin.thietBi != null}" th:text="${thongTin.thietBi.tenTB}"></td>
+                                            <td th:if="${thongTin.thietBi != null}" th:text="${thongTin.thietBi.mota}"></td>
+                                            <td th:text="${thongTin.tgMuon}"></td>
+                                            <td th:text="${thongTin.tgTra}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="text-center" th:each="thongTin : ${thongTinList}" th:if="${thongTin.thietBi == null}">Không có thiết bị nào đang mượn   </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="newPassword">Mật khẩu mới:</label>
-                    <input type="password" class="form-control" id="newPassword" name="newPassword" required>
-                </div>
-                <div class="form-group mb-3">
-                    <label for="confirmNewPassword">Xác nhận mật khẩu mới:</label>
-                    <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" required>
-                </div>
-                <button type="submit" class="btn btn-success mb-3">Đổi Mật Khẩu</button>
-            </form>
-            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">X</span>
-                </button>
-                <strong th:text="${error}"></strong>
             </div>
-            <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">X </span>
-                </button>
-                <strong th:text="${successMessage}"></strong>
-            </div>
-        
         <!-- JAVASCRIPT FILES -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

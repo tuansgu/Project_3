@@ -8,7 +8,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.example.qltv.DTO.MemberDTO;
 import com.example.qltv.entity.Member;
 import com.example.qltv.repository.MemberRepository;
 import com.example.qltv.service.MemberService;
@@ -38,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member addMember(MemberDTO memberDTO) {
+    public Member addMember(Member memberDTO) {
         Member member = new Member();
         member.setMaTV(memberDTO.getMaTV());
         member.setHoTen(memberDTO.getHoTen());
@@ -93,5 +92,17 @@ public class MemberServiceImpl implements MemberService {
         helper.setSubject(subject);
         helper.setText(content, true);
         mailSender.send(message);
+    }
+
+    @Override
+    public boolean changePassword(int maTV, String currentPassword, String newPassword) {
+        Member member = memberRepository.findById(maTV).orElse(null);
+
+        if (member != null && member.getPassword().equals(currentPassword)) {
+            member.setPassword(newPassword);
+            memberRepository.save(member); 
+            return true; 
+        }
+        return false; 
     }
 }

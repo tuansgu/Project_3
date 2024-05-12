@@ -34,13 +34,13 @@ public class Member {
     private String resetPasswordToken;
 
     public Member(int maTV, String hoTen, String khoa, String nganh, String sDT, String Email, String password) {
-        MaTV = maTV;
-        HoTen = hoTen;
-        Khoa = khoa;
-        Nganh = nganh;
-        SDT = sDT;
-        Email = Email;
-        Password = password;
+        this.MaTV = maTV;
+        this.HoTen = hoTen;
+        this.Khoa = khoa;
+        this.Nganh = nganh;
+        this.SDT = sDT;
+        this.Email = Email;
+        this.Password = password;
     }
 
     public Member() {

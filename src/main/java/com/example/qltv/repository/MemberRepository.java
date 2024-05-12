@@ -19,5 +19,4 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
   Member findByEmail(String Email);
 
   public Member findByResetPasswordToken(String token);
-
 }

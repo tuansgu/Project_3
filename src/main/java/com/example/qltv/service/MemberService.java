@@ -1,6 +1,5 @@
 package com.example.qltv.service;
 
-import com.example.qltv.DTO.MemberDTO;
 import com.example.qltv.entity.Member;
 import com.example.qltv.service.Impl.MemberNotFoundException;
 
@@ -17,7 +16,7 @@ public interface MemberService {
 
     public Optional<Member> login(int maTV, String password);
 
-    public Member addMember(MemberDTO memberDTO);
+    public Member addMember(Member memberDTO);
 
     public void sendEmail(String email, String resetPasswordLink)
             throws UnsupportedEncodingException, MessagingException;
@@ -29,4 +28,6 @@ public interface MemberService {
     public void updatePassword(Member member, String newPassword);
 
     public String getSiteURL(HttpServletRequest request);
+
+    public boolean changePassword(int maTV, String currentPassword, String newPassword);
 }
