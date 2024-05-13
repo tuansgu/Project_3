@@ -85,7 +85,6 @@
                     </div>
                 </div>
             </nav>
-            
         </div>
         <div class="main-panel">
             <div class="content-wrapper">
@@ -108,7 +107,8 @@
                                                 <td th:text="${xuLy.hinhThucXL}"></td>
                                                 <td th:text="${xuLy.soTien}"></td>
                                                 <td th:text="${xuLy.ngayXL}"></td>
-                                                <td th:text="${xuLy.trangThaiXL}"></td>
+                                                <td th:if="${xuLy.trangThaiXL == 0}">Chưa xử lý</td>
+                                                <td th:if="${xuLy.trangThaiXL == 1}">Đã xử lý</td>
                                             </tr>            
                                         </tbody>
                                 </table>
