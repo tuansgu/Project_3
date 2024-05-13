@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-    @Autowired
+     @Autowired
     private MemberRepository memberRepository;
     @Autowired
     private JavaMailSender mailSender;
@@ -37,16 +37,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Member addMember(Member memberDTO) {
-        Member member = new Member();
-        member.setMaTV(memberDTO.getMaTV());
-        member.setHoTen(memberDTO.getHoTen());
-        member.setKhoa(memberDTO.getKhoa());
-        member.setNganh(memberDTO.getNganh());
-        member.setSDT(memberDTO.getSDT());
-        member.setEmail(memberDTO.getEmail());
-        member.setPassword(memberDTO.getPassword());
-        memberRepository.save(member);
+    public Member addMember(Member member) {
         return memberRepository.save(member);
     }
 
@@ -95,14 +86,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean changePassword(int maTV, String currentPassword, String newPassword) {
-        Member member = memberRepository.findById(maTV).orElse(null);
-
-        if (member != null && member.getPassword().equals(currentPassword)) {
-            member.setPassword(newPassword);
-            memberRepository.save(member); 
-            return true; 
-        }
-        return false; 
+    public boolean checkMemberID(int MaTV) {
+        return memberRepository.existsByMaTV(MaTV);
     }
 }
