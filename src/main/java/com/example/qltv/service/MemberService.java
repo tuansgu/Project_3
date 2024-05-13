@@ -16,7 +16,7 @@ public interface MemberService {
 
     public Optional<Member> login(int maTV, String password);
 
-    public Member addMember(Member memberDTO);
+    public Member addMember(Member member);
 
     public void sendEmail(String email, String resetPasswordLink)
             throws UnsupportedEncodingException, MessagingException;
@@ -26,6 +26,8 @@ public interface MemberService {
     public Member get(String resetPasswordToken);
 
     public void updatePassword(Member member, String newPassword);
+
+    public boolean checkMemberID(int MaTV);
 
     public String getSiteURL(HttpServletRequest request);
 

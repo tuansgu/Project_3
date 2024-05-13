@@ -24,6 +24,9 @@
               class="card shadow-2-strong card-registration"
               style="border-radius: 15px"
             >
+              <div th:if="${error}" class="success-container">
+                <div class="alert alert-danger">[[${error}]]</div>
+              </div>
               <div class="card-body p-4 p-md-5">
                 <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
                 <form
@@ -44,6 +47,9 @@
                           class="form-control form-control-lg"
                         />
                         <label class="form-label" for="id">Mã thành viên</label>
+                        <div th:if="${errorID}">
+                          <p class="text-danger" th:text="${errorID}"></p>
+                        </div>
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -57,6 +63,9 @@
                           class="form-control form-control-lg"
                         />
                         <label class="form-label" for="name">Họ và tên</label>
+                        <div th:if="${errorName}">
+                          <p class="text-danger" th:text="${errorName}"></p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -120,6 +129,12 @@
                         <label class="form-label" for="sdt"
                           >Số điện thoại</label
                         >
+                        <div th:if="${errorSDT}">
+                          <p class="text-danger" th:text="${errorSDT}"></p>
+                        </div>
+                        <div th:if="${inValidSDT}">
+                          <p class="text-danger" th:text="${inValidSDT}"></p>
+                        </div>
                       </div>
                     </div>
                     <div class="col-md-6 mb-4 pb-2">
@@ -136,6 +151,12 @@
                         <label class="form-label" for="password"
                           >Password</label
                         >
+                        <div th:if="${errorPass}">
+                          <p class="text-danger" th:text="${errorPass}"></p>
+                        </div>
+                        <div th:if="${inValidPass}">
+                          <p class="text-danger" th:text="${inValidPass}"></p>
+                        </div>
                       </div>
                     </div>
                   </div>
