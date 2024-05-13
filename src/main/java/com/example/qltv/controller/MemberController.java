@@ -45,6 +45,8 @@ public class MemberController {
     private ThongTinSDRepository thongTinSDRepository;
     @Autowired
     private MemberServiceImpl memberService;
+       private static final String PASSWORD_REGEX = "^.{1,10}$";
+    private static final String PHONE_REGEX = "^0\\d{9}$";
 
     public MemberController(MemberServiceImpl memberService, MemberRepository memBerRepository, XuLyRepository xuLyRepository, ThongTinSDRepository thongTinSDRepository) {
         this.memberService = memberService;
@@ -228,15 +230,48 @@ public class MemberController {
         return "/signup";
     }
 
-    // trang đăng ký thành công
+     // trang đăng ký thành công
     @PostMapping("/process_register")
-    public String saveMember(@ModelAttribute Member memberDTO) {
-        Member member = memberService.addMember(memberDTO);
-        if (member != null) {
-            return "redirect:/login";
-        } else {
-            return "redirect:/signup";
+    public String saveMember(@ModelAttribute Member member, Model model) {
+        if (memberRepository.existsById(member.getMaTV())) {
+            model.addAttribute("errorID", "Mã thành viên đã được dăng ký");
+            return "signup";
         }
+        if (member.getHoTen().equals("")) {
+            model.addAttribute("errorName", "Vui lòng nhập tên");
+            return "signup";
+        }
+        if (member.getSDT().equals("")) {
+            model.addAttribute("errorSDT", "Vui lòng nhập số điện thoại");
+            return "signup";
+        }
+
+        if (!isValidePhone(member.getSDT())) {
+            model.addAttribute("inValidSDT", "Nhập số điện thoại đúng định dạng");
+            return "signup";
+        }
+        if (member.getPassword().equals("")) {
+            model.addAttribute("errorPass", "Vui lòng nhập mật khẩu");
+            return "signup";
+        }
+        if (!isValidPassword(member.getPassword())) {
+            model.addAttribute("inValidPass", "Password có tối đa 10 kí tự");
+            return "signup";
+        }
+        memberService.addMember(member);
+        if (member == null) {
+            model.addAttribute("error", "Đăng ký không thành công");
+            return "signup";
+        }
+        return "login";
+    }
+
+    private boolean isValidPassword(String password) {
+        return password != null && password.matches(PASSWORD_REGEX);
+    }
+
+    private boolean isValidePhone(String phone) {
+        return phone.matches(PHONE_REGEX);
     }
 
     // trang quên mật khẩu
@@ -251,15 +286,12 @@ public class MemberController {
         String email = request.getParameter("Email");
         String token = RandomString.make(45);
 
-        // System.out.println("Email: " + email);
-        // System.out.println("Token: " + token);
-
         try {
             memberService.updateResetPasswordToken(token, email);
 
             String resetPasswordLink = memberService.getSiteURL(request) + "/resetPassword?token=" + token;
             memberService.sendEmail(email, resetPasswordLink);
-            model.addAttribute("mesage", "we have sent a reset password link to your email.");
+            model.addAttribute("message", "we have sent a reset password link to your email.");
         } catch (MemberNotFoundException e) {
             e.printStackTrace();
             model.addAttribute("error", e.getMessage());
@@ -275,9 +307,8 @@ public class MemberController {
     public String showResetPasswordForm(@Param("token") String token, Model model) {
         Member member = memberService.get(token);
         if (member == null) {
-            model.addAttribute("title", "Reset your password");
-            model.addAttribute("message", "Invalid token");
-            return "message";
+            model.addAttribute("error", "Invalid token");
+            return "error";
         }
         model.addAttribute("token", token);
         model.addAttribute("pageTitle", "Reset your Password");
